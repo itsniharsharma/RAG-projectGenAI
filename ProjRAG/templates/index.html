@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Astrology Chat</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    #chat { border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: scroll; }
+    #input { width: 80%; }
+    button { width: 18%; }
+  </style>
+</head>
+<body>
+  <h2>Astrology Chat</h2>
+  <div id="chat"></div>
+  <input type="text" id="input" placeholder="Ask a question..."/>
+  <button onclick="sendMessage()">Send</button>
+
+  <script>
+    async function sendMessage() {
+      let input = document.getElementById('input').value;
+      let chat = document.getElementById('chat');
+      chat.innerHTML += `<b>You:</b> ${input}<br>`;
+
+      let res = await fetch('/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: input })
+      });
+      let data = await res.json();
+      chat.innerHTML += `<b>AstroBot:</b> ${data.answer}<br>`;
+      document.getElementById('input').value = '';
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+</body>
+</html>

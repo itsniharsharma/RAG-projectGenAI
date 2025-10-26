@@ -1,0 +1,9 @@
+flask
+transformers
+sentence-transformers
+pinecone
+torch
+langchain
+dotenv
+python-dotenv
+pdfplumber
