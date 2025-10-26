@@ -1,0 +1,15 @@
+# Ignore virtual environments
+venv/
+RAG-projectGenAI/venv/
+
+# Ignore environment and cache files
+__pycache__/
+.env
+
+# Ignore data files (especially large PDFs)
+RAG-projectGenAI/data/*.pdf
+RAG-projectGenAI/data/
+
+# Ignore model weights if any
+*.pt
+*.bin
