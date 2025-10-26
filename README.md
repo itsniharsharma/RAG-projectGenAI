@@ -1,4 +1,4 @@
-# Astrology Q&A RAG System
+# RAG System
 
 This project implements a Retrieval-Augmented Generation (RAG) system for answering quary-related questions using a combination of vector search and large language models.
 
