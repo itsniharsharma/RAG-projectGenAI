@@ -5,8 +5,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
 
-os.environ["HF_HOME"] = "D:\\huggingface_cache"
-os.environ["TRANSFORMERS_CACHE"] = "D:\\huggingface_cache"
+# os.environ["HF_HOME"] = "D:\\huggingface_cache"
+# os.environ["TRANSFORMERS_CACHE"] = "D:\\huggingface_cache"
 
 app = Flask(__name__)
 
@@ -18,13 +18,9 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 
 def generate_answer(query):
-   
     context = query_rag(query, top_k=5) 
-
-    
     prompt = f"Answer the user query based on the astrology books:\n\nContext: {context}\n\nQuestion: {query}\nAnswer:"
 
-   
     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
     outputs = model.generate(
         **inputs,
@@ -34,7 +30,6 @@ def generate_answer(query):
         do_sample=True
     )
 
- 
     return tokenizer.decode(outputs[0], skip_special_tokens=True)
 
 
